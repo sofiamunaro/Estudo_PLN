@@ -1,3 +1,4 @@
+#n-grama é uma sequência de n palavras
 import requests
 from bs4 import BeautifulSoup as bs
 import spacy
@@ -19,6 +20,8 @@ for token in documento:
         tokens.append(str.lower(token.lemma_))
     elif not(token.pos_ == "VERB") and token.is_alpha and not(token.is_stop):
         tokens.append(str.lower(token.text))
+
+print(tokens)
 
 #bigramas
 
