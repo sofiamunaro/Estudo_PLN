@@ -1,5 +1,7 @@
 #stemming:reduzir a palavra ao seu radical (correram --> corr)
 #lematização: reduzir a palavra a sua forma base (correram --> correr)
+#lematizador leva em consideração a categoria gramatical das palavras para determinar o lema
+#lematizador é mais preciso e eficiente
 
 import requests
 from bs4 import BeautifulSoup as bs
@@ -13,6 +15,7 @@ page_text = "\n".join([p.get_text() for p in paragraphs])
 
 nlp = spacy.load("pt_core_news_sm")
 documento = nlp(page_text)
+
 #se o token for um verbo, retorna ele lematizado
 tokens = [token.lemma_ for token in documento if token.pos_ == "VERB" and not(token.is_stop)]
 print(tokens)
